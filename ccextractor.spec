@@ -58,7 +58,6 @@ autoreconf -vif
 %install
 cd linux
 %make_install
-#install -D -m755 %{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %{_bindir}/%{name}
