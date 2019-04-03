@@ -1,0 +1,177 @@
+diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefile.am
+--- ccextractor-0.87.old/linux/Makefile.am	2018-10-23 23:36:20.000000000 +0200
++++ ccextractor-0.87/linux/Makefile.am	2019-04-03 18:04:59.624597449 +0200
+@@ -82,28 +82,6 @@
+ 				../src/gpacmp4/gpac/internal/odf_dev.h \
+ 				../src/gpacmp4/gpac/internal/odf_parse_common.h \
+ 				../src/gpacmp4/gpac/internal/ogg.h \
+-				../src/libpng/pngstruct.h \
+-				../src/libpng/pngpriv.h \
+-				../src/libpng/pnginfo.h \
+-				../src/libpng/pnglibconf.h \
+-				../src/libpng/pngconf.h \
+-				../src/libpng/pngdebug.h \
+-				../src/libpng/png.h \
+-				../src/libpng/png.c \
+-				../src/libpng/pngerror.c \
+-				../src/libpng/pngget.c \
+-				../src/libpng/pngmem.c \
+-				../src/libpng/pngpread.c \
+-				../src/libpng/pngread.c \
+-				../src/libpng/pngrio.c \
+-				../src/libpng/pngrtran.c \
+-				../src/libpng/pngrutil.c \
+-				../src/libpng/pngset.c \
+-				../src/libpng/pngtrans.c \
+-				../src/libpng/pngwio.c \
+-				../src/libpng/pngwrite.c \
+-				../src/libpng/pngwtran.c \
+-				../src/libpng/pngwutil.c \
+ 				../src/lib_ccx/ccx_common_common.h \
+ 				../src/lib_ccx/ccx_common_option.h \
+ 				../src/lib_ccx/utility.h \
+@@ -222,34 +200,6 @@
+ 				../src/lib_ccx/ts_tables_epg.c \
+ 				../src/lib_ccx/wtv_constants.h \
+ 				../src/lib_ccx/wtv_functions.c \
+-				../src/zlib/adler32.c \
+-				../src/zlib/compress.c \
+-				../src/zlib/crc32.c \
+-				../src/zlib/crc32.h \
+-				../src/zlib/deflate.c \
+-				../src/zlib/deflate.h \
+-				../src/zlib/gzclose.c \
+-				../src/zlib/gzguts.h \
+-				../src/zlib/gzlib.c \
+-				../src/zlib/gzread.c \
+-				../src/zlib/gzwrite.c \
+-				../src/zlib/infback.c \
+-				../src/zlib/inffast.c \
+-				../src/zlib/inffast.h \
+-				../src/zlib/inffixed.h \
+-				../src/zlib/inflate.c \
+-				../src/zlib/inflate.h \
+-				../src/zlib/inftrees.c \
+-				../src/zlib/inftrees.h \
+-				../src/zlib/trees.c \
+-				../src/zlib/trees.h \
+-				../src/zlib/uncompr.c \
+-				../src/zlib/zconf.h \
+-				../src/zlib/zlib.h \
+-				../src/zlib/zutil.c \
+-				../src/zlib/zutil.h \
+-				../src/utf8proc/utf8proc.c \
+-				../src/utf8proc/utf8proc.h \
+ 				../src/lib_hash/sha2.c \
+ 				../src/lib_hash/sha2.h \
+ 				../src/protobuf-c/protobuf-c.c \
+@@ -267,58 +217,17 @@
+ 				../src/zvbi/sliced.h \
+ 				../src/zvbi/zvbi_decoder.h \
+ 				../src/wrappers/wrapper.c \
+-				../src/wrappers/wrapper.h \
+-				../src/freetype/autofit/autofit.c \
+-				../src/freetype/base/ftbase.c \
+-				../src/freetype/base/ftbbox.c \
+-				../src/freetype/base/ftbdf.c \
+-				../src/freetype/base/ftbitmap.c \
+-				../src/freetype/base/ftcid.c \
+-				../src/freetype/base/ftfntfmt.c \
+-				../src/freetype/base/ftfstype.c \
+-				../src/freetype/base/ftgasp.c \
+-				../src/freetype/base/ftglyph.c \
+-				../src/freetype/base/ftgxval.c \
+-				../src/freetype/base/ftinit.c \
+-				../src/freetype/base/ftlcdfil.c \
+-				../src/freetype/base/ftmm.c \
+-				../src/freetype/base/ftotval.c \
+-				../src/freetype/base/ftpatent.c \
+-				../src/freetype/base/ftpfr.c \
+-				../src/freetype/base/ftstroke.c \
+-				../src/freetype/base/ftsynth.c \
+-				../src/freetype/base/ftsystem.c \
+-				../src/freetype/base/fttype1.c \
+-				../src/freetype/base/ftwinfnt.c \
+-				../src/freetype/bdf/bdf.c \
+-				../src/freetype/bzip2/ftbzip2.c \
+-				../src/freetype/cache/ftcache.c \
+-				../src/freetype/cff/cff.c \
+-				../src/freetype/cid/type1cid.c \
+-				../src/freetype/gzip/ftgzip.c \
+-				../src/freetype/lzw/ftlzw.c \
+-				../src/freetype/pcf/pcf.c \
+-				../src/freetype/pfr/pfr.c \
+-				../src/freetype/psaux/psaux.c \
+-				../src/freetype/pshinter/pshinter.c \
+-				../src/freetype/psnames/psnames.c \
+-				../src/freetype/raster/raster.c \
+-				../src/freetype/sfnt/sfnt.c \
+-				../src/freetype/smooth/smooth.c \
+-				../src/freetype/truetype/truetype.c \
+-				../src/freetype/type1/type1.c \
+-				../src/freetype/type42/type42.c \
+-				../src/freetype/winfonts/winfnt.c
++				../src/wrappers/wrapper.h
+ 
+-ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DFT2_BUILD_LIBRARY -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP
++ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP
+ 
+-ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/gpacmp4/ -I../src/libpng/ -I../src/zlib/ -I../src/zvbi/ -I../src/lib_hash/ -I../src/protobuf-c/ -I../src/utf8proc/ -I../src/ -I../src/freetype/include/
++ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/gpacmp4/ -I../src/zvbi/ -I../src/lib_hash/ -I../src/protobuf-c/ -I../src/ -I/usr/include/freetype2
+ 
+ 
+-ccextractor_LDADD=-lm
++ccextractor_LDADD=-lm -lpng -lz -lutf8proc -lfreetype
+ 
+ if SYS_IS_LINUX
+-ccextractor_CFLAGS += -O3 -s -DGPAC_CONFIG_LINUX
++ccextractor_CFLAGS += -DGPAC_CONFIG_LINUX
+ endif
+ 
+ if SYS_IS_MAC
+@@ -346,7 +255,7 @@
+ 
+ if TESSERACT_PRESENT
+ TESS_LIB = ${tesseract_LIBS}
+-TESS_CPPFLAG = ${tesseract_CFLAGS}
++TESS_CPPFLAG = ${tesseract_CFLAGS} -I/usr/include/tesseract
+ else
+ 
+ #fix for raspberry pi not having a pkgconfig file for tesseract
+@@ -363,7 +272,7 @@
+ ccextractor_LDADD += $(LEPT_LIB)
+ endif
+ 
+-EXTRA_DIST = ../src/gpacmp4/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm ../src/utf8proc/utf8proc_data.c fonts/ icon/
++EXTRA_DIST = ../src/gpacmp4/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm fonts/ icon/
+ 
+ #For GUI
+ if BUILD_WITH_GUI
+@@ -400,14 +309,14 @@
+ 
+ 
+ if SYS_IS_LINUX
+-ccextractorGUI_CFLAGS += -s -O3 -DUNIX
++ccextractorGUI_CFLAGS += -DUNIX
+ ccextractorGUI_CFLAGS += ${glew_CFLAGS}
+ ccextractorGUI_LDADD += ${glew_LIBS}
+ ccextractorGUI_LDADD += -lX11 -lXinerama -lXcursor -lXi -lXrandr -lXxf86vm -lm -ldl -lpthread
+ endif
+ 
+ if SYS_IS_MAC
+-ccextractorGUI_CFLAGS += -O3 -DUNIX
++ccextractorGUI_CFLAGS += -DUNIX
+ ccextractorGUI_CFLAGS += ${glew_CFLAGS}
+ ccextractorGUI_LDADD += ${glew_LIBS}
+ ccextractorGUI_LDFLAGS = -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+diff -Naur ccextractor-0.87.old/src/lib_ccx/params.c ccextractor-0.87/src/lib_ccx/params.c
+--- ccextractor-0.87.old/src/lib_ccx/params.c	2018-10-23 23:36:20.000000000 +0200
++++ ccextractor-0.87/src/lib_ccx/params.c	2019-04-03 18:09:26.459553239 +0200
+@@ -1,6 +1,6 @@
+ #include "png.h"
+ #include "protobuf-c.h"
+-#include "utf8proc/utf8proc.h"
++#include "utf8proc.h"
+ #include "zlib.h"
+ #include "gpac/version.h"
+ #include "lib_ccx.h"
