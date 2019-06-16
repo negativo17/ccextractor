@@ -7,7 +7,7 @@ URL:        http://ccextractor.org/
 
 Source0:    https://github.com/CCExtractor/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz 
 
-Patch0:     %{name}-%{version}-system-libraries-and-cflags.patch
+Patch0:     %{name}-system-libraries-and-cflags.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
