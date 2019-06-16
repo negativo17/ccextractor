@@ -1,6 +1,6 @@
-diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefile.am
---- ccextractor-0.87.old/linux/Makefile.am	2018-10-23 23:36:20.000000000 +0200
-+++ ccextractor-0.87/linux/Makefile.am	2019-04-03 18:04:59.624597449 +0200
+diff -Naur ccextractor-0.88.old/linux/Makefile.am ccextractor-0.88/linux/Makefile.am
+--- ccextractor-0.88.old/linux/Makefile.am	2019-05-21 20:41:08.000000000 +0200
++++ ccextractor-0.88/linux/Makefile.am	2019-06-16 10:03:26.968105592 +0200
 @@ -82,28 +82,6 @@
  				../src/gpacmp4/gpac/internal/odf_dev.h \
  				../src/gpacmp4/gpac/internal/odf_parse_common.h \
@@ -129,7 +129,7 @@ diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefil
  endif
  
  if SYS_IS_MAC
-@@ -346,7 +255,7 @@
+@@ -350,7 +259,7 @@
  
  if TESSERACT_PRESENT
  TESS_LIB = ${tesseract_LIBS}
@@ -138,7 +138,7 @@ diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefil
  else
  
  #fix for raspberry pi not having a pkgconfig file for tesseract
-@@ -363,7 +272,7 @@
+@@ -367,7 +276,7 @@
  ccextractor_LDADD += $(LEPT_LIB)
  endif
  
@@ -147,7 +147,7 @@ diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefil
  
  #For GUI
  if BUILD_WITH_GUI
-@@ -400,14 +309,14 @@
+@@ -404,14 +313,14 @@
  
  
  if SYS_IS_LINUX
@@ -164,14 +164,15 @@ diff -Naur ccextractor-0.87.old/linux/Makefile.am ccextractor-0.87/linux/Makefil
  ccextractorGUI_CFLAGS += ${glew_CFLAGS}
  ccextractorGUI_LDADD += ${glew_LIBS}
  ccextractorGUI_LDFLAGS = -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
-diff -Naur ccextractor-0.87.old/src/lib_ccx/params.c ccextractor-0.87/src/lib_ccx/params.c
---- ccextractor-0.87.old/src/lib_ccx/params.c	2018-10-23 23:36:20.000000000 +0200
-+++ ccextractor-0.87/src/lib_ccx/params.c	2019-04-03 18:09:26.459553239 +0200
-@@ -1,6 +1,6 @@
- #include "png.h"
- #include "protobuf-c.h"
+diff -Naur ccextractor-0.88.old/src/lib_ccx/params.c ccextractor-0.88/src/lib_ccx/params.c
+--- ccextractor-0.88.old/src/lib_ccx/params.c	2019-05-21 20:41:08.000000000 +0200
++++ ccextractor-0.88/src/lib_ccx/params.c	2019-06-16 10:04:33.404332826 +0200
+@@ -13,7 +13,7 @@
+ #include "../lib_hash/sha2.h"
+ #include <string.h>
+ #include <stdio.h>
 -#include "utf8proc/utf8proc.h"
 +#include "utf8proc.h"
- #include "zlib.h"
- #include "gpac/version.h"
- #include "lib_ccx.h"
+ 
+ #ifdef ENABLE_OCR
+ #include "tesseract/capi.h"
