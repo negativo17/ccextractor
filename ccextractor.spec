@@ -1,13 +1,13 @@
 %define _legacy_common_support 1
 
-%global commit0 33ecccedce122d7c2a773f354ac8266ff2cefba5
-%global date 20200508
+%global commit0 19da837232cd2ecf3b6c528a0100ad0a6d152abd
+%global date 20210325
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 #global tag %{version}
 
 Name:       ccextractor
 Version:    0.89
-Release:    1%{!?tag:.%{date}git%{shortcommit0}}%{?dist}
+Release:    2%{!?tag:.%{date}git%{shortcommit0}}%{?dist}
 Summary:    A closed captions and teletext subtitles extractor for video streams.
 License:    GPL
 URL:        http://ccextractor.org/
@@ -53,6 +53,7 @@ anywhere in the world. We intend to keep up with all sources and formats.
 %endif
 
 rm -fr src/{freetype,libpng,utf8proc,zlib}
+rm -fr OpenBSD mac windows
 
 %build
 cd linux
@@ -76,6 +77,9 @@ cd linux
 %{_bindir}/%{name}
 
 %changelog
+* Fri Mar 26 2021 Simone Caronni <negativo17@gmail.com> - 0.89-2.20210325git19da837
+- Update to latest snapshot.
+
 * Thu Jul 16 2020 Simone Caronni <negativo17@gmail.com> - 0.89-1.20200508git33eccce
 - Update to latest snapshot.
 
