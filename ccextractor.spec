@@ -34,7 +34,6 @@ BuildRequires:  pkgconfig(libavutil)
 BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  protobuf-c-devel
-BuildRequires:  utf8proc-devel
 BuildRequires:  zlib-devel
 
 # Unbundle!
