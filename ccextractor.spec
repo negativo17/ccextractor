@@ -1,13 +1,13 @@
 %define _legacy_common_support 1
 
-%global commit0 19da837232cd2ecf3b6c528a0100ad0a6d152abd
-%global date 20210325
+%global commit0 67e15aaf80a576f6f9b79442eaa355d544f0d5c2
+%global date 20210527
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
-#global tag %{version}
+%global tag %{version}
 
 Name:       ccextractor
 Version:    0.89
-Release:    2%{!?tag:.%{date}git%{shortcommit0}}%{?dist}
+Release:    4%{!?tag:.%{date}git%{shortcommit0}}%{?dist}
 Summary:    A closed captions and teletext subtitles extractor for video streams.
 License:    GPL
 URL:        http://ccextractor.org/
@@ -25,6 +25,7 @@ BuildRequires:  automake
 BuildRequires:  gcc
 BuildRequires:  freetype-devel
 BuildRequires:  libpng-devel
+BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig(glew)
 BuildRequires:  pkgconfig(glfw3)
 BuildRequires:  pkgconfig(lept)
@@ -77,6 +78,12 @@ cd linux
 %{_bindir}/%{name}
 
 %changelog
+* Sun Jun 20 2021 Simone Caronni <negativo17@gmail.com> - 0.89-4
+- Update to final 0.89.
+
+* Thu May 27 2021 Simone Caronni <negativo17@gmail.com> - 0.89-3.20210527git67e15aa
+- Update to latest snapshot.
+
 * Fri Mar 26 2021 Simone Caronni <negativo17@gmail.com> - 0.89-2.20210325git19da837
 - Update to latest snapshot.
 

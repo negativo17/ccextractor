@@ -1,7 +1,7 @@
-diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefile.am ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5/linux/Makefile.am
---- ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefile.am	2020-07-16 16:15:00.061058025 +0200
-+++ ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5/linux/Makefile.am	2020-07-18 08:09:46.431578863 +0200
-@@ -83,28 +83,6 @@
+diff -Naur ccextractor-0.89.old/linux/Makefile.am ccextractor-0.89/linux/Makefile.am
+--- ccextractor-0.89.old/linux/Makefile.am	2021-06-20 14:04:42.569388396 +0200
++++ ccextractor-0.89/linux/Makefile.am	2021-06-20 14:05:14.733984021 +0200
+@@ -87,28 +87,6 @@
  				../src/thirdparty/gpacmp4/gpac/internal/odf_dev.h \
  				../src/thirdparty/gpacmp4/gpac/internal/odf_parse_common.h \
  				../src/thirdparty/gpacmp4/gpac/internal/ogg.h \
@@ -30,7 +30,7 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  				../src/lib_ccx/ccx_common_common.h \
  				../src/lib_ccx/ccx_common_option.h \
  				../src/lib_ccx/utility.h \
-@@ -226,34 +204,6 @@
+@@ -230,34 +208,6 @@
  				../src/lib_ccx/ts_tables_epg.c \
  				../src/lib_ccx/wtv_constants.h \
  				../src/lib_ccx/wtv_functions.c \
@@ -65,12 +65,12 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  				../src/thirdparty/lib_hash/sha2.c \
  				../src/thirdparty/lib_hash/sha2.h \
  				../src/thirdparty/protobuf-c/protobuf-c.c \
-@@ -271,65 +221,22 @@
- 				../src/thirdparty/zvbi/sliced.h \
- 				../src/thirdparty/zvbi/zvbi_decoder.h \
- 				../src/wrappers/wrapper.c \
--				../src/wrappers/wrapper.h \
--                                ../src/freetype/* \
+@@ -273,65 +223,22 @@
+ 				../src/lib_ccx/zvbi/sampling_par.c \
+ 				../src/lib_ccx/zvbi/sampling_par.h \
+ 				../src/lib_ccx/zvbi/sliced.h \
+-				../src/lib_ccx/zvbi/zvbi_decoder.h \
+-                ../src/freetype/* \
 -				../src/thirdparty/freetype/autofit/autofit.c \
 -				../src/thirdparty/freetype/base/ftbase.c \
 -				../src/thirdparty/freetype/base/ftbbox.c \
@@ -113,17 +113,17 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
 -				../src/thirdparty/freetype/type1/type1.c \
 -				../src/thirdparty/freetype/type42/type42.c \
 -				../src/thirdparty/freetype/winfonts/winfnt.c
-+				../src/wrappers/wrapper.h
++				../src/lib_ccx/zvbi/zvbi_decoder.h
  
--ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DFT2_BUILD_LIBRARY -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP
-+ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP
+-ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DFT2_BUILD_LIBRARY -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP -DGPAC_DISABLE_REMOTERY -DNO_GZIP -DGPAC_HAVE_CONFIG_H
++ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP -DGPAC_DISABLE_REMOTERY -DNO_GZIP -DGPAC_HAVE_CONFIG_H
  
 -ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/thirdparty/gpacmp4/ -I../src/thirdparty/libpng/ -I../src/thirdparty/zlib/ -I../src/thirdparty/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty/protobuf-c/ -I../src/thirdparty -I../src/ -I../src/thirdparty/freetype/include/
-+ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/thirdparty/gpacmp4/ -I../src/thirdparty/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty/protobuf-c/ -I../src/thirdparty -I../src/ -I/usr/include/freetype2/
++ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/thirdparty/gpacmp4/ -I../src/thirdparty/zlib/ -I../src/thirdparty/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty/protobuf-c/ -I../src/thirdparty -I../src/ -I/usr/include/freetype2/
  
  
--ccextractor_LDADD=-lm
-+ccextractor_LDADD=-lm -lpng -lz -lutf8proc -lfreetype -lprotobuf-c
+-ccextractor_LDADD=-lm -lpthread -ldl
++ccextractor_LDADD=-lm -lpthread -ldl -lcrypto -lpng -lz -lutf8proc -lfreetype -lprotobuf-c
  
  if SYS_IS_LINUX
 -ccextractor_CFLAGS += -O3 -s -DGPAC_CONFIG_LINUX
@@ -133,11 +133,11 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  if SYS_IS_MAC
  ccextractor_CFLAGS += -DPAC_CONFIG_DARWIN -Dfopen64=fopen -Dopen64=open -Dlseek64=lseek
 -ccextractor_LDADD += -liconv -lz 
-+ccextractor_LDADD += -liconv
++ccextractor_LDADD += -liconv -lz
  endif
  
  if SYS_IS_64_BIT
-@@ -356,7 +263,7 @@
+@@ -358,7 +265,7 @@
  
  if TESSERACT_PRESENT
  TESS_LIB = ${tesseract_LIBS}
@@ -146,7 +146,7 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  else
  
  #fix for raspberry pi not having a pkgconfig file for tesseract
-@@ -373,7 +280,7 @@
+@@ -375,7 +282,7 @@
  ccextractor_LDADD += $(LEPT_LIB)
  endif
  
@@ -155,7 +155,7 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  
  #For GUI
  if BUILD_WITH_GUI
-@@ -410,14 +317,14 @@
+@@ -412,14 +319,14 @@
  
  
  if SYS_IS_LINUX
@@ -172,9 +172,9 @@ diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/linux/Makefi
  ccextractorGUI_CFLAGS += ${glew_CFLAGS}
  ccextractorGUI_LDADD += ${glew_LIBS}
  ccextractorGUI_LDFLAGS = -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
-diff -Naur ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/src/lib_ccx/params.c ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5/src/lib_ccx/params.c
---- ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5.old/src/lib_ccx/params.c	2020-07-16 16:15:00.070058159 +0200
-+++ ccextractor-33ecccedce122d7c2a773f354ac8266ff2cefba5/src/lib_ccx/params.c	2020-07-16 16:15:51.065822743 +0200
+diff -Naur ccextractor-0.89.old/src/lib_ccx/params.c ccextractor-0.89/src/lib_ccx/params.c
+--- ccextractor-0.89.old/src/lib_ccx/params.c	2021-06-20 14:04:42.583388655 +0200
++++ ccextractor-0.89/src/lib_ccx/params.c	2021-06-20 14:04:50.704539043 +0200
 @@ -13,7 +13,7 @@
  #include "../lib_hash/sha2.h"
  #include <string.h>
