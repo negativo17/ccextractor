@@ -6,7 +6,7 @@
 %global tag %{version}
 
 Name:       ccextractor
-Version:    0.90
+Version:    0.93
 Release:    1%{?dist}
 Summary:    A closed captions and teletext subtitles extractor for video streams.
 License:    GPL
@@ -78,6 +78,9 @@ cd linux
 %{_bindir}/%{name}
 
 %changelog
+* Fri Sep 24 2021 Simone Caronni <negativo17@gmail.com> - 0.93-1
+- Update to 0.93.
+
 * Wed Jul 21 2021 Simone Caronni <negativo17@gmail.com> - 0.90-1
 - Update to 0.90.
 
