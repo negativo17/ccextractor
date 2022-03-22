@@ -6,7 +6,7 @@
 %global tag %{version}
 
 Name:       ccextractor
-Version:    0.93
+Version:    0.94
 Release:    1%{?dist}
 Summary:    A closed captions and teletext subtitles extractor for video streams.
 License:    GPL
@@ -14,6 +14,7 @@ URL:        http://ccextractor.org/
 
 %if 0%{?tag:1}
 Source0:    https://github.com/CCExtractor/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
+#Source0:    https://github.com/CCExtractor/%{name}/releases/download/v%{version}/%{name}_minimal.tar.gz
 %else
 Source0:    https://github.com/CCExtractor/%{name}/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 %endif
@@ -53,7 +54,7 @@ anywhere in the world. We intend to keep up with all sources and formats.
 %autosetup -p1 -n %{name}-%{commit0}
 %endif
 
-rm -fr src/{freetype,libpng,utf8proc,zlib}
+rm -fr src/thirdparty/{freetype,libpng,utf8proc,zlib}
 rm -fr OpenBSD mac windows
 
 %build
@@ -66,7 +67,8 @@ export CFLAGS="%{optflags} -Wno-maybe-uninitialized"
 %configure \
   --enable-ffmpeg \
   --enable-hardsubx \
-  --enable-ocr
+  --enable-ocr \
+  --without-rust
 
 %make_build
 
@@ -78,6 +80,9 @@ cd linux
 %{_bindir}/%{name}
 
 %changelog
+* Sun Mar 13 2022 Simone Caronni <negativo17@gmail.com> - 0.94-1
+- Update to 0.94.
+
 * Fri Sep 24 2021 Simone Caronni <negativo17@gmail.com> - 0.93-1
 - Update to 0.93.
 
