@@ -7,7 +7,7 @@
 
 Name:       ccextractor
 Version:    0.94
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A closed captions and teletext subtitles extractor for video streams.
 License:    GPL
 URL:        http://ccextractor.org/
@@ -30,14 +30,20 @@ BuildRequires:  openssl-devel
 BuildRequires:  pkgconfig(glew)
 BuildRequires:  pkgconfig(glfw3)
 BuildRequires:  pkgconfig(lept)
-BuildRequires:  pkgconfig(libavcodec)
-BuildRequires:  pkgconfig(libavformat)
-BuildRequires:  pkgconfig(libavutil)
-BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(tesseract)
 BuildRequires:  protobuf-c-devel
 BuildRequires:  utf8proc-devel
 BuildRequires:  zlib-devel
+
+# FFMpeg 5 is not supported:
+BuildRequires:  pkgconfig(libavcodec) >= 58
+BuildRequires:  pkgconfig(libavcodec) < 59
+BuildRequires:  pkgconfig(libavformat) >= 58
+BuildRequires:  pkgconfig(libavformat) < 59
+BuildRequires:  pkgconfig(libavutil) >= 56
+BuildRequires:  pkgconfig(libavutil) < 57
+BuildRequires:  pkgconfig(libswscale) >= 5
+BuildRequires:  pkgconfig(libswscale) < 6
 
 # Unbundle!
 Provides:       bundled(gpac)
@@ -80,6 +86,9 @@ cd linux
 %{_bindir}/%{name}
 
 %changelog
+* Wed Apr 06 2022 Simone Caronni <negativo17@gmail.com> - 0.94-2
+- Rebuild for updated dependencies.
+
 * Sun Mar 13 2022 Simone Caronni <negativo17@gmail.com> - 0.94-1
 - Update to 0.94.
 
