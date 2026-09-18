@@ -1,10 +1,10 @@
-diff -Naur ccextractor-0.94.old/linux/Makefile.am ccextractor-0.94/linux/Makefile.am
---- ccextractor-0.94.old/linux/Makefile.am	2022-03-13 14:46:16.581676279 +0100
-+++ ccextractor-0.94/linux/Makefile.am	2022-03-13 14:51:27.588322702 +0100
-@@ -87,28 +87,6 @@
- 				../src/thirdparty/gpacmp4/gpac/internal/odf_dev.h \
- 				../src/thirdparty/gpacmp4/gpac/internal/odf_parse_common.h \
- 				../src/thirdparty/gpacmp4/gpac/internal/ogg.h \
+diff -Naur orig/linux/Makefile.am ccextractor-0.96.6/linux/Makefile.am
+--- a/linux/Makefile.am	2026-02-20 03:01:27.000000000 +0100
++++ b/linux/Makefile.am	2026-09-18 19:45:05.220981435 +0200
+@@ -32,28 +32,6 @@
+ 				/usr/include/gpac/internal/odf_dev.h \
+ 				/usr/include/gpac/internal/odf_parse_common.h \
+ 				/usr/include/gpac/internal/ogg.h \
 -				../src/thirdparty/libpng/pngstruct.h \
 -				../src/thirdparty/libpng/pngpriv.h \
 -				../src/thirdparty/libpng/pnginfo.h \
@@ -30,7 +30,7 @@ diff -Naur ccextractor-0.94.old/linux/Makefile.am ccextractor-0.94/linux/Makefil
  				../src/lib_ccx/ccx_common_common.h \
  				../src/lib_ccx/ccx_common_option.h \
  				../src/lib_ccx/utility.h \
-@@ -230,34 +208,6 @@
+@@ -174,34 +152,6 @@
  				../src/lib_ccx/ts_tables_epg.c \
  				../src/lib_ccx/wtv_constants.h \
  				../src/lib_ccx/wtv_functions.c \
@@ -64,8 +64,8 @@ diff -Naur ccextractor-0.94.old/linux/Makefile.am ccextractor-0.94/linux/Makefil
 -				../src/thirdparty/utf8proc/utf8proc.h \
  				../src/thirdparty/lib_hash/sha2.c \
  				../src/thirdparty/lib_hash/sha2.h \
- 				../src/thirdparty/protobuf-c/protobuf-c.c \
-@@ -273,50 +223,7 @@
+ 				../src/lib_ccx/zvbi/bcd.h \
+@@ -215,67 +165,18 @@
  				../src/lib_ccx/zvbi/sampling_par.c \
  				../src/lib_ccx/zvbi/sampling_par.h \
  				../src/lib_ccx/zvbi/sliced.h \
@@ -113,79 +113,34 @@ diff -Naur ccextractor-0.94.old/linux/Makefile.am ccextractor-0.94/linux/Makefil
 -				../src/thirdparty/freetype/type1/type1.c \
 -				../src/thirdparty/freetype/type42/type42.c \
 -				../src/thirdparty/freetype/winfonts/winfnt.c
+-
+-if SYS_IS_APPLE_SILICON
+-ccextractor_SOURCES += 	../src/thirdparty/libpng/arm/arm_init.c \
+-  						../src/thirdparty/libpng/arm/filter_neon_intrinsics.c \
+-  						../src/thirdparty/libpng/arm/palette_neon_intrinsics.c
+-endif
 +				../src/lib_ccx/zvbi/zvbi_decoder.h
++
  
- if SYS_IS_APPLE_SILICON
- ccextractor_SOURCES += 	../src/thirdparty/libpng/arm/arm_init.c \
-@@ -324,12 +231,12 @@
-   						../src/thirdparty/libpng/arm/palette_neon_intrinsics.c
- endif
+ ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DFT2_BUILD_LIBRARY -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP -DGPAC_DISABLE_REMOTERY -DNO_GZIP
  
--ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DFT2_BUILD_LIBRARY -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP -DGPAC_DISABLE_REMOTERY -DNO_GZIP -DGPAC_HAVE_CONFIG_H
-+ccextractor_CFLAGS = -std=gnu99 -Wno-write-strings -Wno-pointer-sign -D_FILE_OFFSET_BITS=64 -DVERSION_FILE_PRESENT -DGPAC_DISABLE_VTT -DGPAC_DISABLE_OD_DUMP -DGPAC_DISABLE_REMOTERY -DNO_GZIP -DGPAC_HAVE_CONFIG_H
- 
--ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/thirdparty/gpacmp4/ -I../src/thirdparty/libpng/ -I../src/thirdparty/zlib/ -I../src/lib_ccx/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty/protobuf-c/ -I../src/thirdparty -I../src/ -I../src/thirdparty/freetype/include/
-+ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I../src/thirdparty/gpacmp4/ -I../src/thirdparty/zlib/ -I../src/lib_ccx/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty/protobuf-c/ -I../src/thirdparty -I../src/ -I/usr/include/freetype2/
+-ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I/usr/include/ -I../src/thirdparty/libpng/ -I../src/thirdparty/zlib/ -I../src/lib_ccx/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty -I../src/ -I../src/thirdparty/freetype/include/
++ccextractor_CPPFLAGS =-I../src/lib_ccx/ -I/usr/include/ -I../src/lib_ccx/zvbi/ -I../src/thirdparty/lib_hash/ -I../src/thirdparty -I../src/ -I/usr/include/freetype2
  
  
--ccextractor_LDADD=-lm -lpthread -ldl
-+ccextractor_LDADD=-lm -lpthread -ldl -lcrypto -lpng -lz -lutf8proc -lfreetype -lprotobuf-c
- 
- if WITH_RUST
- ccextractor_LDADD += ./rust/@RUST_TARGET_SUBDIR@/libccx_rust.a
-@@ -349,7 +256,7 @@
- 	CARGO_TARGET_DIR=../../linux/rust $(CARGO) build $(CARGO_RELEASE_ARGS);
- 
- if SYS_IS_LINUX
--ccextractor_CFLAGS += -O3 -s -DGPAC_CONFIG_LINUX
-+ccextractor_CFLAGS += -DGPAC_CONFIG_LINUX
- endif
- 
- if SYS_IS_MAC
-@@ -381,7 +288,7 @@
- 
- if TESSERACT_PRESENT
- TESS_LIB = ${tesseract_LIBS}
--TESS_CPPFLAG = ${tesseract_CFLAGS}
-+TESS_CPPFLAG = ${tesseract_CFLAGS} -I/usr/include/tesseract
- else
- 
- #fix for raspberry pi not having a pkgconfig file for tesseract
-@@ -398,7 +305,7 @@
- ccextractor_LDADD += $(LEPT_LIB)
- endif
- 
--EXTRA_DIST = ../src/thirdparty/gpacmp4/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm ../src/thirdparty/utf8proc/utf8proc_data.c fonts/ icon/
-+EXTRA_DIST = ../src/thirdparty/gpacmp4/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm fonts/ icon/
- 
- #For GUI
- if BUILD_WITH_GUI
-@@ -435,14 +342,14 @@
+-ccextractor_LDADD=-lm -lpthread -ldl -lgpac
++ccextractor_LDADD=-lm -lpthread -ldl -lgpac -lpng -lz -lutf8proc -lfreetype -lprotobuf-c
  
  
  if SYS_IS_LINUX
--ccextractorGUI_CFLAGS += -s -O3 -DUNIX
-+ccextractorGUI_CFLAGS += -DUNIX
- ccextractorGUI_CFLAGS += ${glew_CFLAGS}
- ccextractorGUI_LDADD += ${glew_LIBS}
- ccextractorGUI_LDADD += -lX11 -lXinerama -lXcursor -lXi -lXrandr -lXxf86vm -lm -ldl -lpthread
+-ccextractor_CFLAGS += -O3 -s
  endif
  
  if SYS_IS_MAC
--ccextractorGUI_CFLAGS += -O3 -DUNIX
-+ccextractorGUI_CFLAGS += -DUNIX
- ccextractorGUI_CFLAGS += ${glew_CFLAGS}
- ccextractorGUI_LDADD += ${glew_LIBS}
- ccextractorGUI_LDFLAGS = -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
-diff -Naur ccextractor-0.94.old/src/lib_ccx/params.c ccextractor-0.94/src/lib_ccx/params.c
---- ccextractor-0.94.old/src/lib_ccx/params.c	2022-03-13 14:46:16.601676629 +0100
-+++ ccextractor-0.94/src/lib_ccx/params.c	2022-03-13 14:46:52.433304130 +0100
-@@ -13,7 +13,7 @@
- #include "../lib_hash/sha2.h"
- #include <string.h>
- #include <stdio.h>
--#include <utf8proc/utf8proc.h>
-+#include <utf8proc.h>
+@@ -347,5 +248,5 @@
+ 	cd ../src/rust && \
+ 	CARGO_TARGET_DIR=../../linux/rust $(CARGO) build $(HARDSUBX_FEATURE_RUST) $(CARGO_RELEASE_ARGS);
  
- #ifdef ENABLE_OCR
- #include <tesseract/capi.h>
+-EXTRA_DIST = /usr/include/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm ../src/thirdparty/utf8proc/utf8proc_data.c fonts/ icon/
++EXTRA_DIST = /usr/include/gpac/sync_layer.h ../src/lib_ccx/ccfont2.xbm fonts/ icon/
+ 
